@@ -1,0 +1,27 @@
+.container div {
+  display: flex;
+  align-items: baseline;
+}
+
+.container div div {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-left: 10px;
+}
+
+.red {
+  background-color: red;
+}
+.green {
+  background-color: green;
+}
+.purple {
+  background-color: purple;
+}
+.black {
+  background-color: rgb(42, 41, 41);
+}
+.yellow {
+  background-color: yellow;
+}

@@ -1,0 +1,33 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  box-sizing: border-box;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.navbarHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 155px;
+}
+.navbarHeader img {
+  display: inline-block;
+}
+.navbarNavitems {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbarNavitems ul li {
+  display: inline;
+  margin: 0 20px;
+}
+
+.iconsHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
