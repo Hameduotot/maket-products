@@ -4,13 +4,13 @@ import MainProduct from "./MainProduct/MainProduct";
 import SideProduct from "./SideProduct/SideProduct";
 import styles from "./Products.module.css";
 
-function index() {
+function index({ products }) {
   return (
     <div>
       <HomeNav />
       <div className={styles.wrapper}>
         <SideProduct />
-        <MainProduct />
+        <MainProduct products={products} />
       </div>
     </div>
   );

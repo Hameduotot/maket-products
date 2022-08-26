@@ -1,14 +1,23 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import styles from "../styles/Home.module.css";
-import { Provider } from "react-redux";
-import { store } from "../features/Store/store";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchData } from "../features/Readucers/getDataSlice";
 
 export default function Home() {
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.post);
+
+  useEffect(() => {
+    if (data === null) {
+      dispatch(fetchData());
+    }
+  }, []);
   return (
     <div className={styles.container}>
-      <Provider store={store}>
-        <Layout />
-      </Provider>
+      <Layout />
     </div>
   );
 }

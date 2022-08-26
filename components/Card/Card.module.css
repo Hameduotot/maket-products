@@ -4,12 +4,10 @@
   width: 300px;
   align-items: stretch;
   margin: 20px 30px;
-  background-color: aquamarine;
 }
 
 .wrapperImg {
   overflow: hidden;
-  background-color: blue;
 }
 .wrapperImg img {
   width: 100%;

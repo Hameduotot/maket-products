@@ -7,7 +7,7 @@ function SideProduct() {
   return (
     <div className={styles.container}>
       <input />
-      <span>Category</span>
+      <h5 className={styles.category}>Category</h5>
       <CategoryFilter />
       <Company />
       <Colors />
