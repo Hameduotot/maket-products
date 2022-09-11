@@ -22,15 +22,19 @@ const SinglePageProduct = createSlice({
   initialState,
   reducers: {
     addToCard: (state, action) => {
-      if (Object.keys(state.card).includes(action.payload.id)) {
-        // console.log("ggg", state.card[action.payload.id].numbersItem);
-        // state.card[action.payload.id] = {
-        //   ...action.payload,
-        //   numbersItem: 2,
-        // };
-        state.card[action.payload.id] = { ...state.card[action.payload.id] };
+      const { id } = action.payload;
+
+      if (Object.keys(state.card).includes(id)) {
+        state.card[id] = {
+          ...action.payload,
+          numbersItem:
+            state.card[id].numbersItem < state.card[id].stockstate.card[id].numbersItem
+              ? state.card[id].numbersItem + 1
+              : state.card[id].numbersItem,
+        };
+      } else {
+        state.card[id] = { ...action.payload, numbersItem: 1 };
       }
-      state.card[action.payload.id] = { ...action.payload, numbersItem: 1 };
     },
   },
   extraReducers: (builder) => {

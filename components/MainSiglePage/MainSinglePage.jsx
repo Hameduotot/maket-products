@@ -50,7 +50,7 @@ function MainSinglePage({ data }) {
           </div>
           <a
             className={styles.backtoproducts}
-            onClick={() => dispatch(addToCard(data, data.id))}
+            onClick={() => dispatch(addToCard(data))}
           >
             ADD TO CARD{" "}
           </a>

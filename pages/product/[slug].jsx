@@ -14,7 +14,7 @@ const SingelPage = () => {
   useEffect(() => {
     dispatch(getSinglePageData(router.query.slug));
   }, []);
-  console.log(data);
+
   return (
     <div>
       <Header />
