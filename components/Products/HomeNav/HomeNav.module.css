@@ -18,4 +18,9 @@
   color: rgb(69, 50, 39);
   font-size: xx-large;
   font-weight: 600;
+  text-transform: capitalize;
+}
+
+.products::first-letter {
+  color: rgb(51, 14, 14);
 }

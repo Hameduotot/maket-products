@@ -20,7 +20,7 @@ function Card({ product }) {
       </div>
       <div className={styles.wrapperPrice}>
         <label>{product.name} </label>
-        <span>${product.price}</span>
+        <span>${product.price.toFixed(2) / 100}</span>
       </div>
     </div>
   );

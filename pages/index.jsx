@@ -1,8 +1,7 @@
-import { useState } from "react";
+
 import { useEffect } from "react";
 import Layout from "../components/Layout/Layout";
 import styles from "../styles/Home.module.css";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "../features/Readucers/getDataSlice";
 

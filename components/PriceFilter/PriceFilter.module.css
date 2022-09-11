@@ -1,0 +1,10 @@
+.range {
+  background-color: blue;
+  height: 1rem;
+}
+.show-price {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  max-width: 40%;
+}

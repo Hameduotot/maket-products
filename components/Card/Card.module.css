@@ -9,18 +9,21 @@
 .wrapperImg {
   overflow: hidden;
 }
+
 .wrapperImg img {
   width: 100%;
   height: 175px;
   border-radius: 10px;
   margin: 0 auto;
   object-fit: cover;
+  margin-bottom: 1rem;
 }
 
 .wrapperImg img:hover {
   filter: grayscale(50%);
   transform: scale(1.1);
   border-radius: 10px;
+  transition: all ease 500ms;
 }
 .wrapperPrice {
   margin: 10px;

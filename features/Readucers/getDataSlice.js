@@ -16,8 +16,8 @@ export const getProduct = createSlice({
   name: "getPost",
   initialState,
   reducers: {
-    filterColor: {
-      reducer(state, action) {
+    filterCategory: {
+      reducer: (state, action) => {
         const { data, category } = action.payload;
         if (category === "all") {
           state.filteredData = data;
@@ -25,6 +25,30 @@ export const getProduct = createSlice({
           state.filteredData = data.filter((p) => p.category === category);
         }
       },
+      prepare: (data, category) => {
+        return { payload: { data, category } };
+      },
+    },
+    filterColorList: (state, action) => {
+      let result = [];
+      action.payload.data.map((elm) => {
+        if (action.payload.color === "all") {
+          state.filteredData = action.payload.data;
+        }
+        if (elm.colors.includes(action.payload.color)) {
+          result = [...result, elm];
+          state.filteredData = result;
+        }
+      });
+    },
+    filterPriceList: (state, action) => {
+      let result = [];
+      action.payload.data.filter((elm) => {
+        if (elm.price / 100 < action.payload.value) {
+          result = [...result, elm];
+          state.filteredData = result;
+        }
+      });
     },
   },
   extraReducers: (builder) => {
@@ -33,5 +57,6 @@ export const getProduct = createSlice({
     });
   },
 });
-export const { filterColor } = getProduct.actions;
+export const { filterCategory, filterColorList, filterPriceList } =
+  getProduct.actions;
 export default getProduct.reducer;

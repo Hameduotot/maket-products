@@ -5,6 +5,7 @@ import axios from "axios";
 
 const initialState = {
   data: null,
+  card: {},
 };
 
 export const getSinglePageData = createAsyncThunk(
@@ -19,7 +20,19 @@ export const getSinglePageData = createAsyncThunk(
 const SinglePageProduct = createSlice({
   name: "getSinglePageData",
   initialState,
-  reducers: {},
+  reducers: {
+    addToCard: (state, action) => {
+      if (Object.keys(state.card).includes(action.payload.id)) {
+        // console.log("ggg", state.card[action.payload.id].numbersItem);
+        // state.card[action.payload.id] = {
+        //   ...action.payload,
+        //   numbersItem: 2,
+        // };
+        state.card[action.payload.id] = { ...state.card[action.payload.id] };
+      }
+      state.card[action.payload.id] = { ...action.payload, numbersItem: 1 };
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getSinglePageData.fulfilled, (state, action) => {
       state.data = action.payload;
@@ -27,4 +40,5 @@ const SinglePageProduct = createSlice({
   },
 });
 
+export const { addToCard } = SinglePageProduct.actions;
 export default SinglePageProduct.reducer;

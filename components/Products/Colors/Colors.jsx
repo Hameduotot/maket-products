@@ -1,42 +1,49 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { filterColor } from "../../../features/Readucers/getDataSlice";
+import { useDispatch } from "react-redux";
+import { filterColorList } from "../../../features/Readucers/getDataSlice";
 import styles from "./Colors.module.css";
 
-function Colors() {
+function Colors({ dataColors }) {
   const [colors, setColors] = useState([]);
-  const { data } = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const filterColorData = () => {
-    data.map((elem) => {
-      elem.colors.map((color) => {
+    dataColors.map((elem) => {
+      elem.colors.forEach((color) => {
         if (!colors.includes(color)) {
           setColors([...colors, color]);
         }
       });
     });
-
-    return colors;
   };
 
   useEffect(() => {
     filterColorData();
-  }, []);
-  //   0: "#ff0000"
-  // 1: "#ffb900"
-  // 2: "#00ff00"
-  // 3: "#0000ff"
-  // 4: "#000"
+  }, [colors]);
 
   return (
     <div className={styles.container}>
       <h2> Colors</h2>
       <div>
-        <span> All</span>
+        <span
+          onClick={() =>
+            dispatch(filterColorList({ color: "all", dataColors }))
+          }
+        >
+          All
+        </span>
         <>
           {colors.map((color) => {
-            let colorEdited = color.slice(1);
-            return <div className={styles[colorEdited]}></div>;
+            return (
+              <div
+                onClick={() => dispatch(filterColorList({ color, dataColors }))}
+                style={{
+                  background: color,
+                  width: "20px",
+                  borderRadius: "50%",
+                  height: "20px",
+                }}
+              />
+            );
           })}
         </>
       </div>

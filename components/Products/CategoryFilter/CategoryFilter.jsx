@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { filterColor } from "../../../features/Readucers/getDataSlice";
+import { filterCategory } from "../../../features/Readucers/getDataSlice";
 import styles from "./CategoryFilter.module.css";
 
-function CategoryFilter() {
+function CategoryFilter({ dataCompany }) {
   const categoryList = [
     "All",
     "Office",
@@ -14,9 +14,9 @@ function CategoryFilter() {
     "Kids",
   ];
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.post);
+
   const handleClick = (category) => {
-    dispatch(filterColor({ data, category }));
+    dispatch(filterCategory(dataCompany, category));
   };
   return (
     <ul className={styles.container}>
