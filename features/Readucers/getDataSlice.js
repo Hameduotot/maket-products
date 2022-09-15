@@ -1,10 +1,23 @@
-import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createEntityAdapter,
+  createSlice,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = {
-  data: null,
+// const initialState = {
+//   data: null,
+//   filteredData: null,
+// };
+const entitiesadupte = createEntityAdapter();
+
+export const { selectAll, selectById, selectEntities, selectIds } =
+  entitiesadupte.getSelectors((state) => state.post);
+
+const initialState = entitiesadupte.getInitialState({
   filteredData: null,
-};
+  data: null,
+});
 
 export const fetchData = createAsyncThunk("getPost/Product", async () => {
   return await axios
@@ -44,7 +57,7 @@ export const getProduct = createSlice({
     filterPriceList: (state, action) => {
       let result = [];
       action.payload.data.filter((elm) => {
-        if (elm.price / 100 < action.payload.value) {
+        if (elm.price / 10 < action.payload.value) {
           result = [...result, elm];
           state.filteredData = result;
         }
@@ -54,6 +67,7 @@ export const getProduct = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchData.fulfilled, (state, action) => {
       state.data = action.payload;
+      entitiesadupte.upsertMany(state, action.payload);
     });
   },
 });

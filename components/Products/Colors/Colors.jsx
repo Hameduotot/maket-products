@@ -1,24 +1,10 @@
-import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { filterColorList } from "../../../features/Readucers/getDataSlice";
 import styles from "./Colors.module.css";
 
 function Colors({ dataColors }) {
-  const [colors, setColors] = useState([]);
+  const colors = ["#ff0000", "#ffb900", "#00ff00", "#0000ff", "#000"];
   const dispatch = useDispatch();
-  const filterColorData = () => {
-    dataColors.map((elem) => {
-      elem.colors.forEach((color) => {
-        if (!colors.includes(color)) {
-          setColors([...colors, color]);
-        }
-      });
-    });
-  };
-
-  useEffect(() => {
-    filterColorData();
-  }, [colors]);
 
   return (
     <div className={styles.container}>

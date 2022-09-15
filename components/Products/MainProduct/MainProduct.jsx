@@ -1,21 +1,20 @@
-import Link from "next/link";
 import React from "react";
 import Card from "../../Card/Card";
 import NextLink from "../../NextLink";
 import styles from "./MainProduct.module.css";
 
-function MainProduct({ products = [] }) {
+function MainProduct({ productsIds = [] }) {
   return (
     <div className={styles.container}>
-      {products.map((product) => (
+      {productsIds.map((id) => (
         <NextLink
           href={{
-            pathname: "/product/[slug]",
-            query: { slug: product.id },
+            pathname: "./product/[slug]",
+            query: { slug: id },
           }}
-          key={product.id}
+          key={id}
         >
-          <Card product={product} />
+          <Card id={id} />
         </NextLink>
       ))}
     </div>

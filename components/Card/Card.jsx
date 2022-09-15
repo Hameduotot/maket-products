@@ -1,11 +1,15 @@
 import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
+import { selectById } from "../../features/Readucers/getDataSlice";
 import styles from "./Card.module.css";
-function Card({ product }) {
+function Card({ id }) {
+  const card = useSelector((state) => selectById(state, id));
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapperImg}>
-        <img src={product.image} />
+        <img src={card.image} />
 
         <svg
           stroke="currentColor"
@@ -19,8 +23,8 @@ function Card({ product }) {
         </svg>
       </div>
       <div className={styles.wrapperPrice}>
-        <label>{product.name} </label>
-        <span>${product.price.toFixed(2) / 100}</span>
+        <label>{card.name} </label>
+        <span>${card.price.toFixed(2) / 100}</span>
       </div>
     </div>
   );

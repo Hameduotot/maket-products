@@ -1,11 +1,25 @@
-// https://course-api.com/react-store-single-product?id=${id}
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const loadFromLocalStorage = () => {
+  try {
+    const serialisedState = localStorage.getItem("persistantState");
+    if (serialisedState === null) return undefined;
+    return JSON.parse(serialisedState);
+  } catch (e) {
+    console.warn(e);
+    return undefined;
+  }
+};
+
+function saveToLocalStorage(state) {
+  const serialisedState = JSON.stringify(state);
+  localStorage.setItem("persistantState", serialisedState);
+}
 const initialState = {
   data: null,
   card: {},
+  local: loadFromLocalStorage(),
 };
 
 export const getSinglePageData = createAsyncThunk(
@@ -26,14 +40,16 @@ const SinglePageProduct = createSlice({
 
       if (Object.keys(state.card).includes(id)) {
         state.card[id] = {
-          ...action.payload,
+          ...state.card[id],
           numbersItem:
-            state.card[id].numbersItem < state.card[id].stockstate.card[id].numbersItem
+            state.card[id].numbersItem < state.data.stock
               ? state.card[id].numbersItem + 1
               : state.card[id].numbersItem,
         };
+        saveToLocalStorage({ ...state.card });
       } else {
-        state.card[id] = { ...action.payload, numbersItem: 1 };
+        state.card[id] = { numbersItem: 1, id: state.card[id] };
+        saveToLocalStorage({ ...state.card });
       }
     },
   },

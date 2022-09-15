@@ -5,6 +5,7 @@ import Colors from "../Colors/Colors";
 import Company from "../Company/Company";
 import styles from "./SideProduct.module.css";
 function SideProduct({ data }) {
+  
   return (
     <div className={styles.container}>
       <input />
